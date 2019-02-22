@@ -1,0 +1,25 @@
+/*Show global busy indicator
+ * iDuration type number in ms - duration of busy indicator displayed
+ * iDelay type number in ms - duration of delay when busy indicator should appear
+ */
+ 
+showBusyIndicator: function (iDuration, iDelay) {
+	sap.ui.core.BusyIndicator.show(iDelay);
+	if (iDuration && iDuration > 0) {
+		if (this._sTimeoutId) {
+			jQuery.sap.clearDelayedCall(this._sTimeoutId);
+			this._sTimeoutId = null;
+		}
+		this._sTimeoutId = jQuery.sap.delayedCall(iDuration, this, function () {
+			this.hideBusyIndicator();
+		});
+	}
+}
+
+/*Hide global busy indicator
+ * if we want to hide global busy indicator before duration
+ */
+
+hideBusyIndicator: function () {
+	sap.ui.core.BusyIndicator.hide();
+}
