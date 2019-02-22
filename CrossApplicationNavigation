@@ -1,0 +1,17 @@
+/* Cross application navigation inside Fiori Lunchpad 
+ * Semantic object and action as input object
+ */
+ 
+var navigationService = sap.ushell.Container.getService("CrossApplicationNavigation");
+navigationService.toExternal({
+    target: {
+        semanticObject: "IDsemanticobject",
+        action: "Action"
+    },
+    params: {
+        parameter1: "additionalParam1"
+    }
+});
+
+/* Back to previous application */
+navigationService.backToPreviousApp();
