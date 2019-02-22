@@ -1,0 +1,11 @@
+/* Place config.json file in webapp folder beside Component.js 
+ * this code will load config.json file to browser
+ */
+var sUrl = jQuery.sap.getModulePath("application.path") + "/config.json";
+this.config = jQuery.sap.sjax({
+		url: sUrl,
+		dataType: "json"
+}).data || {};
+
+/*request data from config like this*/
+this.config.jsonEntry;
