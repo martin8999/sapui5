@@ -1,0 +1,38 @@
+"Add filter fields to smart filter in Standard variant
+
+ method define.
+
+ super->define( ).
+ 
+ data lo_ann_target       type ref to /iwbep/if_mgw_vocan_ann_target.
+ data lo_annotation       type ref to /iwbep/if_mgw_vocan_annotation.
+ 
+ vocab_anno_model->create_vocabulary_reference(
+    iv_vocab_id = 'vocabularies.UI.v1'
+    iv_vocab_version = '0001'
+    )->create_include(
+    iv_namespace = 'com.sap.vocabularies.UI.v1'
+    iv_alias = 'UI' ).
+    
+    lo_ann_target = vocab_anno_model->create_annotations_target( iv_target = 'C_PURCHASEORDER_FS_SRV.C_PurchaseOrderFsType' ).
+    lo_annotation = lo_ann_target->create_annotation( iv_term = 'UI.SelectionFields' ).
+    
+    DATA(lo_collection) = lo_annotation->create_collection( ).
+    lo_collection->create_simple_value( )->set_property_path(  'PurchaseOrder' ).
+    lo_collection->create_simple_value( )->set_property_path(  'CreationDate' ).
+    lo_collection->create_simple_value( )->set_property_path(  'PurchasingGroupName' ).
+    lo_collection->create_simple_value( )->set_property_path(  'Supplier' ).
+    
+  endmethod.
+  
+  "Result in metadata should be
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="C_PURCHASEORDER_FS_SRV.C_PurchaseOrderFsType">
+  <Annotation Term="UI.SelectionFields">
+    <Collection>
+      <PropertyPath>PurchaseOrder</PropertyPath>
+      <PropertyPath>CreationDate</PropertyPath>
+      <PropertyPath>PurchasingGroupName</PropertyPath>
+      <PropertyPath>Supplier</PropertyPath>
+    </Collection>
+  </Annotation>
+</Annotations>
