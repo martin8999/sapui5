@@ -1,0 +1,10 @@
+onInit: function(){
+	const delegate = {
+		   onBeforeHide: this.onBeforeLeaving.bind(this)
+ 	};
+  this.getView().addEventDelegate(delegate); //register delegate for view
+},
+
+onBeforeLeaving: function() {
+		//this is called when user leaves view
+},
