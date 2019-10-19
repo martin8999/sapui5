@@ -1,0 +1,16 @@
+var data = [{
+    name: "Martin",
+    id: 25
+}, {
+    name: "Alex",
+    id: 19
+}];
+
+var find = 19;
+
+var indx = data.map(function(x) {
+    return x.id;
+}).indexOf(find);
+
+//return 1
+console.log(indx);
