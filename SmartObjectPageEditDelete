@@ -1,5 +1,12 @@
 "Bind visibility of Edit, Delete buttons on smart object template to property abap_boolean
 
+ vocab_anno_model->create_vocabulary_reference(
+    iv_vocab_id = 'vocabularies.Capabilites.v1'
+    iv_vocab_version = '0001'
+    )->create_include(
+    iv_namespace = 'com.sap.vocabularies.UI.v1'
+    iv_alias = 'UI' ).
+    
 DATA(lo_C_PurchaseReqnHeader) = vocab_anno_model->create_annotations_target( iv_target = 'MM_PUR_PR_PROFNL_MAINTAIN_SRV.MM_PUR_PR_PROFNL_MAINTAIN_SRV_Entities/C_PurchaseReqnHeader' ).
 lo_C_PurchaseReqnHeader->create_annotation( iv_term = 'Capabilities.UpdateRestrictions' )->create_record( )->create_property( iv_property_name = 'Updatable' )->create_simple_value( )->set_property_path( 'HasActiveEntity' ).
 lo_C_PurchaseReqnHeader->create_annotation( iv_term = 'Capabilities.DeleteRestrictions' )->create_record( )->create_property( iv_property_name = 'Deletable' )->create_simple_value( )->set_property_path( 'HasActiveEntity' ).
