@@ -1,0 +1,19 @@
+"Bind visibility of Edit, Delete buttons on smart object template to property abap_boolean
+
+DATA(lo_C_PurchaseReqnHeader) = vocab_anno_model->create_annotations_target( iv_target = 'MM_PUR_PR_PROFNL_MAINTAIN_SRV.MM_PUR_PR_PROFNL_MAINTAIN_SRV_Entities/C_PurchaseReqnHeader' ).
+lo_C_PurchaseReqnHeader->create_annotation( iv_term = 'Capabilities.UpdateRestrictions' )->create_record( )->create_property( iv_property_name = 'Updatable' )->create_simple_value( )->set_property_path( 'HasActiveEntity' ).
+lo_C_PurchaseReqnHeader->create_annotation( iv_term = 'Capabilities.DeleteRestrictions' )->create_record( )->create_property( iv_property_name = 'Deletable' )->create_simple_value( )->set_property_path( 'HasActiveEntity' ).
+
+"This is generated in oData service
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="MM_PUR_PR_PROFNL_MAINTAIN_SRV.MM_PUR_PR_PROFNL_MAINTAIN_SRV_Entities/C_PurchaseReqnHeader">
+ <Annotation Term="Capabilities.UpdateRestrictions">
+  <Record>
+    <PropertyValue Property="Updatable" PropertyPath="HasActiveEntity"/>
+  </Record>
+</Annotation>
+<Annotation Term="Capabilities.DeleteRestrictions">
+    <Record>
+       <PropertyValue Property="Deletable" PropertyPath="HasActiveEntity"/>
+    </Record>
+  </Annotation>
+</Annotations>
